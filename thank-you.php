@@ -22,6 +22,17 @@ $HERO_BG    = $asset('ambience/hero-bg-inter.webp');
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7TQS8BS5C3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7TQS8BS5C3');
+</script>
+
 <title>Thank you | Interventional Psychiatry of Arizona</title>
 <meta name="description" content="Your request has been received. A member of our team will reach out within one business day.">
 <!-- Confirmation pages should never appear in search results or be shared as a landing page. -->

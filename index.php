@@ -77,6 +77,17 @@ $absolute = function (string $path): string {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7TQS8BS5C3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7TQS8BS5C3');
+</script>
+
 <title>Interventional Psychiatry of Arizona | TMS &amp; Ketamine Therapy in Phoenix</title>
 <meta name="description" content="Advanced, evidence-based psychiatric care in Phoenix, AZ. Medication management, TMS therapy, ketamine therapy and psychotherapy for treatment-resistant depression, PTSD, anxiety and more. Most insurances accepted.">
 <meta property="og:title" content="Interventional Psychiatry of Arizona">
@@ -578,7 +589,7 @@ tailwind.config = {
       /* Carrier logos live in assets/img/insurance/. A carrier without a logo file
          still renders — as a clean wordmark tile — so the wall stays complete. */
       $insurers = [
-        ['Aetna',                             'aetna.png'],
+        ['Aetna',                             'aetna.webp'],
         ['Ambetter Health',                   'ambetter.png'],
         ['Arizona Complete Health',           'arizona-complete-health.png'],
         ['Blue Cross Blue Shield of Arizona', 'bcbs-arizona.png'],
