@@ -10,6 +10,7 @@ $ADDRESS_L2    = 'Phoenix, AZ 85016';
 $YEAR          = date('Y');
 $MAPS_QUERY    = urlencode($ADDRESS_L1 . ', ' . $ADDRESS_L2);
 $GOOGLE_PROFILE = 'https://maps.app.goo.gl/3gQUrhL2xK6Wjpbo7';
+$FORM_ENDPOINT  = 'https://app.formester.com/forms/RHUbxZYz6/submissions';
 
 /* Social profiles. 'stroke' icons are drawn as outlines, 'fill' as solid glyphs. */
 $SOCIAL = [
@@ -46,7 +47,7 @@ $IMG = [
   'hero'      => ['file'=>'ambience/hero-bg-inter.webp', 'id'=>'photo-1524758631624-e2822e304c36', 'alt'=>'Illustration of neurons firing across a synapse'],
   'tms'       => ['file'=>'ambience/inter-a-2.webp', 'id'=>'photo-1666214280557-f1b5022eb634', 'alt'=>'Magstim TMS chair and stimulator in our treatment room'],
   'ketamine'  => ['file'=>'ambience/inter-a-1.webp', 'id'=>'photo-1512678080530-7760d81faba6', 'alt'=>'Our monitoring room, with recliners, vitals equipment and privacy screens'],
-  'meds'      => ['file'=>'medication.jpg',  'id'=>'photo-1631217868264-e5b90bb7e133', 'alt'=>'Clinician talking through a treatment plan with a patient'],
+  'meds'      => ['file'=>'medication.jpg',  'id'=>'photo-1563213126-a4273aed2016', 'alt'=>'A weekly pill organiser being filled, one compartment at a time'],
   'therapy'   => ['file'=>'psychotherapy.jpg','id'=>'photo-1573497491208-6b1acb260507', 'alt'=>'Two people in conversation during a therapy session'],
   'care'      => ['file'=>'care.jpg',        'id'=>'photo-1584515933487-779824d29309', 'alt'=>'Two people holding hands in a moment of support'],
   'why'       => ['file'=>'ambience/why-patient-trust-us.webp', 'id'=>'photo-1519494026892-80bbd2d6fd0d', 'alt'=>'A clinician positioning the TMS coil for a patient during treatment'],
@@ -250,7 +251,7 @@ tailwind.config = {
              width="545" height="228" class="nav-logo nav-logo-light absolute inset-0 h-full w-auto">
       </a>
 
-      <div class="hidden lg:flex items-center gap-1 text-[15px] text-brand-900/75">
+      <div class="hidden lg:flex items-center gap-0.5 xl:gap-1 whitespace-nowrap text-[15px] text-brand-900/75">
         <a href="#treatments" class="nav-link px-3 py-2 rounded-lg hover:bg-sand hover:text-brand-900 transition">Treatments</a>
         <a href="#insurance"  class="nav-link px-3 py-2 rounded-lg hover:bg-sand hover:text-brand-900 transition">Insurance</a>
         <a href="#conditions" class="nav-link px-3 py-2 rounded-lg hover:bg-sand hover:text-brand-900 transition">Conditions</a>
@@ -259,12 +260,12 @@ tailwind.config = {
       </div>
 
       <div class="flex items-center gap-3">
-        <a href="tel:<?= $PHONE_LINK ?>" class="nav-phone hidden sm:flex items-center gap-2 text-[15px] font-medium text-brand-900 hover:text-accent-600 transition">
+        <a href="tel:<?= $PHONE_LINK ?>" class="nav-phone hidden xl:flex items-center gap-2 whitespace-nowrap text-[15px] font-medium text-brand-900 hover:text-accent-600 transition">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" class="h-4 w-4"><path d="M4 5.5C4 4.7 4.7 4 5.5 4h2c.7 0 1.3.5 1.5 1.2l.6 2.4c.1.6-.1 1.2-.6 1.5l-1.2.9a12 12 0 0 0 5.2 5.2l.9-1.2c.4-.5 1-.7 1.5-.6l2.4.6c.7.2 1.2.8 1.2 1.5v2c0 .8-.7 1.5-1.5 1.5A15.5 15.5 0 0 1 4 5.5Z"/></svg>
           <?= $PHONE_DISPLAY ?>
         </a>
-        <a href="#consult" class="nav-cta inline-flex items-center gap-2 rounded-full bg-brand-900 px-5 py-2.5 text-[14.5px] font-medium text-cream hover:bg-brand-800 transition shadow-sm hover:shadow-md">
-          Book a consult
+        <a href="#consult" class="nav-cta inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-brand-900 px-5 py-2.5 text-[14.5px] font-medium text-cream hover:bg-brand-800 transition shadow-sm hover:shadow-md">
+          Book a consultation
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3.5 w-3.5"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
         </a>
         <button id="menuBtn" aria-label="Open menu" class="nav-burger lg:hidden grid place-items-center h-10 w-10 rounded-lg border border-black/10 text-brand-900">
@@ -350,11 +351,12 @@ tailwind.config = {
           <!-- subtle glow behind the card -->
           <div class="pointer-events-none absolute -inset-4 rounded-[36px] bg-gradient-to-br from-accent-400/20 via-transparent to-brand-500/20 blur-2xl"></div>
 
-          <form id="contactForm" class="glass relative rounded-[28px] p-7 sm:p-8">
+          <form id="contactForm" action="<?= $FORM_ENDPOINT ?>" method="POST" accept-charset="UTF-8"
+                class="glass relative rounded-[28px] p-7 sm:p-8">
 
             <div class="flex items-start justify-between gap-4">
               <div>
-                <h2 class="font-display text-[27px] leading-tight tracking-tight text-cream">Request a free 15-min consult</h2>
+                <h2 class="font-display text-[27px] leading-tight tracking-tight text-cream">Book a consultation</h2>
                 <p class="mt-2 text-[14.5px] leading-relaxed text-cream/60">
                   Tell us a little about what you're facing. We'll reach out within one business day.
                 </p>
@@ -367,23 +369,23 @@ tailwind.config = {
             <div class="mt-6 grid sm:grid-cols-2 gap-3.5">
               <div>
                 <label for="fname" class="block text-[12.5px] font-medium text-cream/60 mb-1.5">First name</label>
-                <input id="fname" name="fname" required class="glass-field w-full rounded-xl px-4 py-3 text-[15px] outline-none" placeholder="Jane">
+                <input id="fname" name="First name" required class="glass-field w-full rounded-xl px-4 py-3 text-[15px] outline-none" placeholder="Jane">
               </div>
               <div>
                 <label for="lname" class="block text-[12.5px] font-medium text-cream/60 mb-1.5">Last name</label>
-                <input id="lname" name="lname" required class="glass-field w-full rounded-xl px-4 py-3 text-[15px] outline-none" placeholder="Doe">
+                <input id="lname" name="Last name" required class="glass-field w-full rounded-xl px-4 py-3 text-[15px] outline-none" placeholder="Doe">
               </div>
               <div>
                 <label for="email" class="block text-[12.5px] font-medium text-cream/60 mb-1.5">Email</label>
-                <input id="email" name="email" type="email" required class="glass-field w-full rounded-xl px-4 py-3 text-[15px] outline-none" placeholder="you@email.com">
+                <input id="email" name="Email" type="email" required class="glass-field w-full rounded-xl px-4 py-3 text-[15px] outline-none" placeholder="you@email.com">
               </div>
               <div>
                 <label for="phone" class="block text-[12.5px] font-medium text-cream/60 mb-1.5">Phone</label>
-                <input id="phone" name="phone" type="tel" class="glass-field w-full rounded-xl px-4 py-3 text-[15px] outline-none" placeholder="(602) 000-0000">
+                <input id="phone" name="Phone" type="tel" class="glass-field w-full rounded-xl px-4 py-3 text-[15px] outline-none" placeholder="(602) 000-0000">
               </div>
               <div class="sm:col-span-2">
                 <label for="interest" class="block text-[12.5px] font-medium text-cream/60 mb-1.5">What are you interested in?</label>
-                <select id="interest" name="interest" class="glass-field w-full appearance-none rounded-xl px-4 py-3 text-[15px] outline-none"
+                <select id="interest" name="Interested in" class="glass-field w-full appearance-none rounded-xl px-4 py-3 text-[15px] outline-none"
                         style="background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23FBF9F6' stroke-opacity='.6' stroke-width='2'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E&quot;);background-repeat:no-repeat;background-position:right 1rem center">
                   <?php foreach (['I’m not sure yet — help me decide','Medication management','TMS Therapy','Ketamine therapy','Psychotherapy'] as $opt): ?>
                   <option><?= $opt ?></option>
@@ -392,12 +394,18 @@ tailwind.config = {
               </div>
               <div class="sm:col-span-2">
                 <label for="msg" class="block text-[12.5px] font-medium text-cream/60 mb-1.5">Anything you'd like us to know <span class="font-normal text-cream/35">(optional)</span></label>
-                <textarea id="msg" name="msg" rows="2" class="glass-field w-full rounded-xl px-4 py-3 text-[15px] outline-none resize-none" placeholder="Briefly — what you've tried, and what you're hoping to change."></textarea>
+                <textarea id="msg" name="Message" rows="2" class="glass-field w-full rounded-xl px-4 py-3 text-[15px] outline-none resize-none" placeholder="Briefly — what you've tried, and what you're hoping to change."></textarea>
               </div>
             </div>
 
+            <!-- Spam trap: real people never see this, bots fill it in. -->
+            <div class="hidden" aria-hidden="true">
+              <label>Do not fill this in <input type="text" name="company" tabindex="-1" autocomplete="off"></label>
+            </div>
+            <input type="hidden" name="Source" value="Landing page">
+
             <button type="submit" class="group mt-6 w-full inline-flex items-center justify-center gap-2.5 rounded-full bg-cream px-8 py-4 text-[15.5px] font-medium text-brand-900 hover:bg-white transition shadow-lg shadow-black/25">
-              Request my consult
+              Book a consultation
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4 transition-transform group-hover:translate-x-1"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
             </button>
 
@@ -533,7 +541,7 @@ tailwind.config = {
       </p>
       <div class="flex flex-wrap items-center justify-center gap-3 shrink-0">
         <a href="#consult" class="group inline-flex items-center gap-2 rounded-full bg-brand-900 px-6 py-3 text-[14.5px] font-medium text-cream hover:bg-brand-800 transition">
-          Book a free consult
+          Book a consultation
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
         </a>
         <a href="tel:<?= $PHONE_LINK ?>" class="inline-flex items-center gap-2 rounded-full border border-black/10 px-6 py-3 text-[14.5px] font-medium text-brand-900 hover:bg-sand transition">
@@ -638,10 +646,16 @@ tailwind.config = {
           clinicians, and several years of not feeling like themselves. That history isn't a
           dead end — it's diagnostic information, and it shapes where we go next.
         </p>
-        <a href="#consult" class="mt-9 inline-flex items-center gap-2 text-[15.5px] font-medium text-accent-400 hover:text-accent-200 transition">
-          Talk with our team
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
-        </a>
+        <div class="mt-9 flex flex-col sm:flex-row gap-3.5">
+          <a href="#consult" class="group inline-flex items-center justify-center gap-2.5 rounded-full bg-accent-500 px-7 py-3.5 text-[15px] font-medium text-white hover:bg-accent-600 transition shadow-lg shadow-accent-500/20">
+            Book a consultation
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4 transition-transform group-hover:translate-x-1"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="tel:<?= $PHONE_LINK ?>" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-[15px] font-medium text-cream hover:bg-white/10 transition backdrop-blur">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-4 w-4"><path d="M4 5.5C4 4.7 4.7 4 5.5 4h2c.7 0 1.3.5 1.5 1.2l.6 2.4c.1.6-.1 1.2-.6 1.5l-1.2.9a12 12 0 0 0 5.2 5.2l.9-1.2c.4-.5 1-.7 1.5-.6l2.4.6c.7.2 1.2.8 1.2 1.5v2c0 .8-.7 1.5-1.5 1.5A15.5 15.5 0 0 1 4 5.5Z"/></svg>
+            <?= $PHONE_DISPLAY ?>
+          </a>
+        </div>
 
         <figure class="mt-12 relative overflow-hidden rounded-3xl ring-1 ring-white/15">
           <img src="<?= $img('care', 1000) ?>" alt="<?= $alt('care') ?>" loading="lazy" decoding="async"
@@ -733,6 +747,16 @@ tailwind.config = {
         </div>
         <?php endforeach; ?>
         </div>
+
+        <div class="reveal mt-11 flex flex-wrap items-center gap-4 border-t border-black/10 pt-8">
+          <a href="#consult" class="group inline-flex items-center gap-2 rounded-full bg-brand-900 px-7 py-3.5 text-[15px] font-medium text-cream hover:bg-brand-800 transition">
+            Book a consultation
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+          </a>
+          <p class="text-[14px] text-brand-900/50">
+            One conversation, and an honest answer either way.
+          </p>
+        </div>
       </div>
 
     </div>
@@ -755,7 +779,7 @@ tailwind.config = {
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
         <?php
         $steps = [
-          ['Free 15-minute call',  'Tell us briefly what you’ve tried and what isn’t working. We’ll say honestly whether we’re the right fit.'],
+          ['An introductory call', 'Tell us briefly what you’ve tried and what isn’t working. We’ll say honestly whether we’re the right fit.'],
           ['Comprehensive eval',   'A full psychiatric evaluation — history, prior treatments, medical factors and goals — in person or via telehealth.'],
           ['Your treatment plan',  'We map the options together, explain what each involves, and handle insurance verification and prior authorization.'],
           ['Treatment & follow-up','Care begins, and we track your response closely — adjusting as we go rather than waiting months to reassess.'],
@@ -774,7 +798,7 @@ tailwind.config = {
 
     <div class="reveal mt-14 text-center">
       <a href="#consult" class="group inline-flex items-center justify-center gap-2.5 rounded-full bg-accent-500 px-8 py-4 text-[15.5px] font-medium text-white hover:bg-accent-600 transition shadow-lg shadow-accent-500/20">
-        Start with step one
+        Book a consultation
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4 transition-transform group-hover:translate-x-1"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
       </a>
       <p class="mt-4 text-[13.5px] text-brand-900/45">
@@ -872,7 +896,15 @@ tailwind.config = {
       </div>
     </div>
 
-    <p class="mt-8 text-[12.5px] leading-relaxed text-brand-900/35 max-w-3xl">
+    <div class="reveal mt-12 flex flex-col sm:flex-row items-center justify-center gap-x-5 gap-y-4 text-center">
+      <p class="font-display text-[22px] tracking-tight text-brand-900">Your first visit starts with a phone call.</p>
+      <a href="#consult" class="group inline-flex items-center gap-2 rounded-full bg-accent-500 px-7 py-3.5 text-[15px] font-medium text-white hover:bg-accent-600 transition shadow-lg shadow-accent-500/20 shrink-0">
+        Book a consultation
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <p class="mt-10 text-[12.5px] leading-relaxed text-brand-900/35 max-w-3xl">
       Reviews are reproduced as published by their authors on Google. Patient experiences vary;
       testimonials reflect individual results and are not a guarantee of outcome.
     </p>
@@ -890,9 +922,18 @@ tailwind.config = {
           Good to know before you call.
         </h2>
         <p class="mt-6 text-[15.5px] leading-relaxed text-brand-900/60">
-          Still unsure? A short phone call answers most of it. Reach us at
-          <a href="tel:<?= $PHONE_LINK ?>" class="text-accent-600 font-medium hover:underline"><?= $PHONE_DISPLAY ?></a>.
+          Still unsure? A short phone call answers most of it — no forms, no waiting room.
         </p>
+
+        <div class="mt-8 rounded-2xl border border-black/[0.07] bg-white p-6">
+          <p class="text-[12px] uppercase tracking-[0.16em] text-brand-900/40">Ask us directly</p>
+          <a href="tel:<?= $PHONE_LINK ?>" class="mt-2 block font-display text-[26px] tracking-tight text-brand-900 hover:text-accent-600 transition"><?= $PHONE_DISPLAY ?></a>
+          <p class="mt-1 text-[13.5px] text-brand-900/45">Monday to Friday, 8am–5pm</p>
+          <a href="#consult" class="group mt-5 inline-flex items-center gap-2 rounded-full bg-brand-900 px-6 py-3 text-[14.5px] font-medium text-cream hover:bg-brand-800 transition">
+            Book a consultation
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"><path d="M5 12h13M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
       </div>
 
       <div class="lg:col-span-8 reveal" style="transition-delay:.1s">
@@ -948,7 +989,7 @@ tailwind.config = {
           Let's find what<br> finally works.
         </h2>
         <p class="mt-5 text-[16.5px] leading-relaxed text-cream/65 font-light max-w-md">
-          It starts with a free 15-minute conversation — no commitment, no pressure.
+          It starts with a conversation — no commitment, no pressure.
         </p>
 
         <div class="mt-8 flex flex-col sm:flex-row gap-3.5">
@@ -957,7 +998,7 @@ tailwind.config = {
             Call <?= $PHONE_DISPLAY ?>
           </a>
           <a href="#consult" class="group inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-4 text-[15.5px] font-medium text-cream hover:bg-white/10 transition backdrop-blur">
-            Request a consult
+            Book a consultation
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4 transition-transform group-hover:-translate-y-0.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
           </a>
         </div>
@@ -1154,14 +1195,56 @@ document.querySelectorAll('.js-photo').forEach(im => {
   im.addEventListener('error', () => im.remove(), { once: true });
 });
 
-/* ---------- contact form (front-end only for now) ---------- */
-document.getElementById('contactForm').addEventListener('submit', (e) => {
-  e.preventDefault();
+/* ---------- consult form ----------
+   Posts to Formester over fetch so the visitor stays on the page. If that call
+   can't be confirmed — CORS, offline, an endpoint change — the form falls back
+   to a normal browser POST, which always reaches Formester. */
+(() => {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
   const note = document.getElementById('formNote');
-  note.textContent = 'Thank you — your request has been received. A member of our team will reach out within one business day.';
-  note.classList.remove('hidden');
-  e.target.querySelectorAll('input, textarea').forEach(f => f.value = '');
-});
+  const btn  = form.querySelector('button[type="submit"]');
+  const btnLabel = btn.innerHTML;
+
+  const say = (text, ok) => {
+    note.textContent = text;
+    note.classList.remove('hidden');
+    note.classList.toggle('border-accent-400/30', ok);
+    note.classList.toggle('bg-accent-500/15', ok);
+    note.classList.toggle('border-red-400/40', !ok);
+    note.classList.toggle('bg-red-500/15', !ok);
+  };
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    /* Bots fill the hidden field; drop those without telling them why. */
+    if (form.elements.company && form.elements.company.value) return;
+
+    btn.disabled = true;
+    btn.classList.add('opacity-70');
+    btn.textContent = 'Sending…';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+
+      form.reset();
+      say('Thank you — your request has been received. A member of our team will reach out within one business day.', true);
+      btn.innerHTML = btnLabel;
+      btn.disabled = false;
+      btn.classList.remove('opacity-70');
+    } catch (err) {
+      /* Couldn't confirm it landed — hand the submission to the browser, which
+         posts it for real even when fetch is blocked. */
+      form.submit();
+    }
+  });
+})();
 </script>
 </body>
 </html>
