@@ -31,6 +31,12 @@ $HERO_BG    = $asset('ambience/hero-bg-inter.webp');
   gtag('js', new Date());
 
   gtag('config', 'G-7TQS8BS5C3');
+  gtag('config', 'AW-11337249981');
+</script>
+
+<!-- Event snippet for Contact Form Tracking conversion page -->
+<script>
+  gtag('event', 'conversion', {'send_to': 'AW-11337249981/19oDCIHzpY4bEL3pgp4q'});
 </script>
 
 <title>Thank you | Interventional Psychiatry of Arizona</title>

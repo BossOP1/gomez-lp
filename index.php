@@ -86,6 +86,7 @@ $absolute = function (string $path): string {
   gtag('js', new Date());
 
   gtag('config', 'G-7TQS8BS5C3');
+  gtag('config', 'AW-11337249981');
 </script>
 
 <title>Interventional Psychiatry of Arizona | TMS &amp; Ketamine Therapy in Phoenix</title>
