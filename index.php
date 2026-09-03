@@ -5,24 +5,12 @@
  */
 $PHONE_DISPLAY = '(602) 824-8404';
 $PHONE_LINK    = '+16028248404';
-$ADDRESS_L1    = '2122 E. Highland Ave, Suite 335';
+$ADDRESS_L1    = '2929 E Camelback Rd #119';
 $ADDRESS_L2    = 'Phoenix, AZ 85016';
 $YEAR          = date('Y');
 $MAPS_QUERY    = urlencode($ADDRESS_L1 . ', ' . $ADDRESS_L2);
-$GOOGLE_PROFILE = 'https://maps.app.goo.gl/3gQUrhL2xK6Wjpbo7';
+$GOOGLE_PROFILE = 'https://maps.app.goo.gl/4DGBt44Sru7zcEqH7';
 $FORM_ENDPOINT  = 'https://app.formester.com/forms/RHUbxZYz6/submissions';
-
-/* Social profiles. 'stroke' icons are drawn as outlines, 'fill' as solid glyphs. */
-$SOCIAL = [
-  ['Facebook',  'https://www.facebook.com/interpsychaz', 'fill',
-   'M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.29-.04-1.27-.12-2.4-.12-2.4 0-4 1.45-4 4.1v2.32H7.6V13h2.7v8h3.2Z'],
-  ['Instagram', 'https://www.instagram.com/interpsychaz/', 'stroke',
-   'M4 8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8Z M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z M16.9 7.5h.01'],
-  ['LinkedIn',  'https://www.linkedin.com/company/interventional-psychiatry-of-arizona1/', 'fill',
-   'M6.94 5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0ZM3.3 8.4h3.3V21H3.3V8.4Zm5.6 0h3.15v1.72h.05c.44-.83 1.5-1.72 3.1-1.72 3.3 0 3.9 2.17 3.9 5V21h-3.3v-5.85c0-1.4-.03-3.2-1.95-3.2s-2.25 1.52-2.25 3.1V21H8.9V8.4Z'],
-  ['Google',    $GOOGLE_PROFILE, 'fill',
-   'M21.35 11.1H12v3.2h5.35c-.25 1.5-1.85 4.4-5.35 4.4a6.2 6.2 0 0 1 0-12.4c1.75 0 3 .75 3.7 1.4l2.5-2.4A9.4 9.4 0 0 0 12 2.6a9.4 9.4 0 1 0 0 18.8c5.4 0 9-3.8 9-9.15 0-.6-.05-1.05-.15-1.55Z'],
-];
 
 /* ─── IMAGERY ────────────────────────────────────────────────────────────────
  * Every photo slot on the page is declared once, here.
@@ -236,17 +224,6 @@ tailwind.config = {
       <span>Mon–Fri · 8am–5pm</span>
       <span class="h-3 w-px bg-white/20"></span>
       <a href="tel:<?= $PHONE_LINK ?>" class="hover:text-white transition"><?= $PHONE_DISPLAY ?></a>
-      <span class="h-3 w-px bg-white/20"></span>
-      <div class="flex items-center gap-3.5">
-        <?php foreach ($SOCIAL as [$sName, $sUrl, $sType, $sPath]): ?>
-        <a href="<?= $sUrl ?>" target="_blank" rel="noopener" aria-label="<?= $sName ?>" class="hover:text-white transition">
-          <svg viewBox="0 0 24 24" class="h-[15px] w-[15px]"
-               <?= $sType === 'fill' ? 'fill="currentColor"' : 'fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"' ?>>
-            <path d="<?= $sPath ?>"/>
-          </svg>
-        </a>
-        <?php endforeach; ?>
-      </div>
     </div>
   </div>
 </div>
@@ -1059,18 +1036,6 @@ tailwind.config = {
           Advanced psychiatric care for Phoenix and all of Arizona — medication management,
           TMS, ketamine therapy and psychotherapy, delivered by a team that stays with you.
         </p>
-
-        <div class="mt-7 flex items-center gap-3">
-          <?php foreach ($SOCIAL as [$sName, $sUrl, $sType, $sPath]): ?>
-          <a href="<?= $sUrl ?>" target="_blank" rel="noopener" aria-label="<?= $sName ?>"
-             class="grid place-items-center h-10 w-10 rounded-full border border-white/12 bg-white/[0.04] text-cream/70 transition hover:bg-accent-500 hover:border-accent-500 hover:text-white">
-            <svg viewBox="0 0 24 24" class="h-[18px] w-[18px]"
-                 <?= $sType === 'fill' ? 'fill="currentColor"' : 'fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"' ?>>
-              <path d="<?= $sPath ?>"/>
-            </svg>
-          </a>
-          <?php endforeach; ?>
-        </div>
       </div>
 
       <div class="md:col-span-2">
